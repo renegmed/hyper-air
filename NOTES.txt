@@ -1,0 +1,21 @@
+This is my lab work
+
+$ yo hyperledger-composer
+Welcome to the Hyperledger Composer project generator
+? Please select the type of project: Business Network
+You can run this generator using: 'yo hyperledger-composer:businessnetwork'
+Welcome to the business network generator
+? Business network name: airline
+? Description: this is the airline business network
+? Author name:  renegmed
+? Author email: ren@test.com
+? License: Apache-2.0
+? Namespace: org.acme.airline.aircraft
+? Do you want to generate an empty template network? Yes: generate an empty template network
+   create package.json
+   create README.md
+   create models/org.acme.airline.aircraft.cto
+   create permissions.acl
+   create .eslintrc.yml
+
+   
