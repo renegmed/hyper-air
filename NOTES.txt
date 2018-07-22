@@ -1,5 +1,6 @@
 This is my lab work
 
+$ composer-playground
 
 
 /****Data for testing ***

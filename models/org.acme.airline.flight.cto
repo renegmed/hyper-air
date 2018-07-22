@@ -1,16 +1,64 @@
 namespace org.acme.airline.flight
 
-import  org.acme.airline.aircraft.Aircraft
+import      org.acme.airline.aircraft.Aircraft
 
-asset Flight identified by flightNumber {
-  o String      flightNumber
-  o Route       route
-  o String[]    aliasFlightNumber
-  --> Aircraft  aircraft  optional
+asset Flight identified by flightId {
+  o   String            flightId          regex=/[A-Z][A-Z][0-9][0-9][0-9]-[0-9][0-9]-[0-3][0-9]-[0-9][0-9]/
+  o   String            flightNumber
+  o   Route             route
+  o   String[]          aliasFlightNumber optional
+  --> Aircraft          aircraft  optional
 }
 
 concept Route {
-  o String    origin        regex=/[A-Z][A-Z][A-Z]/
-  o String    destination   regex=/[A-Z][A-Z][A-Z]/
+  o   String    origin       regex=/[A-Z][A-Z][A-Z]/
+  o   String    destination  regex=/[A-Z][A-Z][A-Z]/
+  o   DateTime  schedule  
+}
+
+// Logistics department of ACME creates the flights
+transaction CreateFlight {
+  o String    flightNumber
+  o String    origin
+  o String    destination
   o DateTime  schedule
 }
+
+event FlightCreated {
+  o String    flightId
+}
+
+transaction GetFlightId {
+  o String   flightId
+}
+
+event AccessedFlightId {
+  o String  flightId
+}
+
+
+
+
+
+
+
+/** Data for testin **
+
+> composer archive create -a dist/airlinev4.bna --sourceType dir --sourceName .
+
+{
+  "$class": "org.acme.airline.flight.Flight",
+  "flightNumber": "AE101",
+  "route": {
+    "$class": "org.acme.airline.flight.Route",
+    "origin": "EWR",
+    "destination": "SEA",
+    "schedule": "2017-10-15T21:44:38.666Z"
+  },
+  "aliasFlightNumber": ["BU456"]
+}
+
+ "aircraft": "org.acme.airline.aircraft.Aircraft#CRAFT001"
+
+
+****/
